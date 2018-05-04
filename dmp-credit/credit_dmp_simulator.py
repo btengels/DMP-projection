@@ -1,12 +1,12 @@
-"""dmp_simulator.py
+"""credit_dmp_simulator.py
 
-This file contains the dmp_simulator class, which inherits the parameters/methods
-from the dmp_model class and adds additional methods for simulating the dmp model
+This file contains the credit_dmp_simulator class, which inherits the parameters/methods
+from the credit_dmp_model class and adds additional methods for simulating the dmp model
 given a set of policy functions. 
 
 Example:
 
-    >>> simulator = dmp_simulator()  # assumes parameters and model equations in dmp_model 
+    >>> simulator = credit_dmp_simulator()  # assumes parameters and model equations in credit_dmp_model 
     >>> simulator.simulate_model(continuous=False)  # simulates model on discretized state space
     >>> moments = simulator._get_mean_simu_moments()  # computes model moments from simulated data 
 
@@ -19,12 +19,12 @@ may require changing.
 import numpy as np
 import utils 
 import scipy.stats as stats
-from dmp_model import dmp_model
-from dmp_solver import dmp_solver
+from credit_dmp_model import credit_dmp_model
+from credit_dmp_solver import credit_dmp_solver
 
 
 
-class dmp_simulator(dmp_model):        
+class credit_dmp_simulator(credit_dmp_model):        
     """Class for simulating series and retreiving moments and/or irfs."""
 
     def simulate_model(self, continuous=False, solve=True):
@@ -220,7 +220,7 @@ class dmp_simulator(dmp_model):
     def _solve_model(self):
         """
         """
-        solver = dmp_solver()
+        solver = credit_dmp_solver()
         solver.alpha_L = self.alpha_L
         solver.alpha_C = self.alpha_C
         solver.nu_L = self.nu_L
@@ -231,7 +231,7 @@ class dmp_simulator(dmp_model):
 if __name__ == "__main__":
 
     # initialize class and simulate. Note, this uses "initial guess" policy function
-    simulator = dmp_simulator()    
+    simulator = credit_dmp_simulator()    
     simulator.simulate_model(continuous=False)
     moments = simulator._get_mean_simu_moments()
     print(moments)

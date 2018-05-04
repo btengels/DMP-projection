@@ -1,4 +1,4 @@
-"""dmp_model.py
+"""credit_dmp_model.py
 
 TODO:   try increasing alphaL
         try decreasing nu_C
@@ -14,11 +14,11 @@ import math
 from scipy.interpolate import bisplrep, bisplev, CubicSpline, interp1d
 
 
-class dmp_model(object):
+class credit_dmp_model(object):
     """Solves and simulates a DMP-like model using projections methods."""
 
     def __init__(self):
-        """Initializes DMP_Model object. Sets initial parameters using model_params and grid_builder classes
+        """Initializes credit_DMP_Model object. Sets initial parameters using model_params and grid_builder classes
 
         """
         self.s_L = .035                         # labor_market separation rate        
@@ -269,7 +269,7 @@ class dmp_model(object):
 
 
 if __name__ == '__main__':
-    dmp = dmp_model()
+    dmp = credit_dmp_model()
     dmp._get_exogenous_grids()
     print(dmp.X_grid)
     print(dmp.K_grid)

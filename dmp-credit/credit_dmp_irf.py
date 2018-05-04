@@ -1,7 +1,7 @@
-"""dmp_irf.py
+"""credit_dmp_irf.py
 
-This file contains the dmp_irf class, which inherits the parameters/methods
-from the dmp_model class and adds additional methods for simulating impulse 
+This file contains the credit_dmp_irf class, which inherits the parameters/methods
+from the credit_dmp_model class and adds additional methods for simulating impulse 
 reponse functions.
 
 Example:
@@ -9,7 +9,7 @@ Example:
     >>> T_irf = 140
     >>> irf_nsim = 500
 
-    >>> irf_maker = dmp_irf()
+    >>> irf_maker = credit_dmp_irf()
     >>> irf_maker.get_irf(T_irf, irf_nsim)
     >>> irf_maker.plot_irfs('figures/irf_{}.pdf')
 
@@ -18,15 +18,15 @@ import utils
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-from dmp_model import dmp_model
-from dmp_simulator import dmp_simulator
+from credit_dmp_model import credit_dmp_model
+from credit_dmp_simulator import credit_dmp_simulator
 from collections import defaultdict
 import matplotlib as mpl
 sns.set_style("white")
 mpl.rc('font', family='serif')
 
 
-class dmp_irf(dmp_simulator):
+class credit_dmp_irf(credit_dmp_simulator):
 
     def get_irf(self, T, nsim, n_start=.9, x_pct=50, k_pct=50, shock_size=1, kshock_true=True, xshock_true=True):
         """Computes an average impulse response function from nsim simulations.
@@ -97,7 +97,7 @@ class dmp_irf(dmp_simulator):
         """Computes nsim simulated IRFs
 
         Args:
-            sim (dmp_simulator object)
+            sim (credit_dmp_simulator object)
         """        
         U_irf_list = []
         V_irf_list = []
@@ -181,13 +181,13 @@ class dmp_irf(dmp_simulator):
 if __name__ == "__main__":
 
     import statsmodels.api as sm
-    from dmp_solver import dmp_solver    
+    from credit_dmp_solver import credit_dmp_solver    
 
-    # solver = dmp_solver()
+    # solver = credit_dmp_solver()
     # solver._get_initial_conditions()
     # solver.solve_model()
 
-    irf_maker = dmp_irf()
+    irf_maker = credit_dmp_irf()
     irf_maker._solve_model()
     # irf_maker.aE = solver.aE
     

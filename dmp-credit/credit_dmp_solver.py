@@ -1,13 +1,13 @@
-"""dmp_solver.py
+"""credit_dmp_solver.py
 
-This file contains the dmp_solver class, which inherits the parameters/methods
-from the dmp_model class and adds additional methods for solving for optimal 
+This file contains the credit_dmp_solver class, which inherits the parameters/methods
+from the credit_dmp_model class and adds additional methods for solving for optimal 
 policy functions. The model is solved using a nonlinear solver in on the 
 model's optimality conditions.
 
 Example:
 
-    >>> model = dmp_solver()  # assumes parameter values given in dmp_model
+    >>> model = credit_dmp_solver()  # assumes parameter values given in credit_dmp_model
     >>> model.solve_model()  # solves the model for optimal policy function
 
     >>> # retrieve the results
@@ -22,10 +22,10 @@ import numpy as np
 import scipy as sp
 import utils 
 from scipy.interpolate import bisplrep, bisplev
-from dmp_model import dmp_model
+from credit_dmp_model import credit_dmp_model
 
 
-class dmp_solver(dmp_model):
+class credit_dmp_solver(credit_dmp_model):
     """Class for solving for the model policy function. """
 
     def solve_model(self):
@@ -92,7 +92,7 @@ class dmp_solver(dmp_model):
         return err.flatten()
 
     def _get_initial_conditions(self):
-        """Initializes policy functions. Assigns policy functions as attributes to DMP_Model class.
+        """Initializes policy functions. Assigns policy functions as attributes to credit_DMP_Model class.
 
         """
         self.aE = np.linspace(0, 1, self.nn)[:, np.newaxis] * np.linspace(.7, 1.3, len(self.X_grid))[np.newaxis]
@@ -119,8 +119,8 @@ class dmp_solver(dmp_model):
 if __name__ == "__main__":
 
     # check parameterization routines
-    model = dmp_model()
-    solver = dmp_solver() 
+    model = credit_dmp_model()
+    solver = credit_dmp_solver() 
     solver._get_initial_conditions()
 
     err_before = solver._residual(solver.initial_guess)
